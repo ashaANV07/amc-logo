@@ -4,6 +4,8 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 
+const HOST = "0.0.0.0";
+
 // ES6 __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,9 +44,10 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", port: PORT });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log("===========================================");
   console.log(`  AMC Logo Server running on port ${PORT}`);
+  console.log(`  Listening on : ${HOST}:${PORT}`);
   console.log(`  Base URL : http://localhost:${PORT}`);
   console.log(`  Images   : http://localhost:${PORT}/images/<filename>`);
   console.log(`  List     : http://localhost:${PORT}/`);
